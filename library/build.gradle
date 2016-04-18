@@ -1,0 +1,28 @@
+apply plugin: 'android-library'
+apply plugin: 'maven-publish'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    sourceSets.main.jni.srcDirs = []
+
+    defaultConfig {
+        versionCode 1
+        versionName "0.0.1"
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:21.+'
+}
+
+publishing {
+    publications {
+        BitBeaconLibrary(MavenPublication) {
+            groupId 'co.airbitz'
+            artifactId 'airbitz-bitbeacon-android'
+            version '0.0.1'
+            artifact("$buildDir/outputs/aar/library-release.aar")
+        }
+    }
+}
